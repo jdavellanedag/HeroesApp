@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../auth/AuthContext";
+import { types } from "../../types/types";
 
 export const LoginScreen = ({ history }) => {
+  const { dispatch } = useContext(AuthContext);
+
   const handleClick = () => {
-    //history.push("/");
-    history.replace("/");
+    const lastpath = localStorage.getItem("lastpath") || "/";
+
+    dispatch({
+      type: types.login,
+      payload: {
+        name: "Julian",
+      },
+    });
+    history.replace(lastpath);
   };
   return (
     <div className="container mt-5">
